@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kalkulator wyceny – Meble Józef Dłużeń</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <header class="main-header">
+    <div class="logo">🪵 Meble Józef Dłużeń</div>
+    <nav>
+      <a href="index.html">Start</a>
+      <a href="galeria.html">Galeria</a>
+      <a href="kalkulator.html" class="active">Wycena</a>
+      <a href="aktualnosci.html">Aktualności</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+  </header>
+
+  <section class="calculator fade-in">
+    <h2>Kalkulator orientacyjnej wyceny</h2>
+    <form id="priceCalculator">
+      <label for="type">Wybierz rodzaj mebla:</label>
+      <select id="type" name="type" required>
+        <option value="">-- Wybierz --</option>
+        <option value="kuchnia">Kuchnia</option>
+        <option value="szafa">Szafa przesuwna</option>
+        <option value="lazienka">Zabudowa łazienkowa</option>
+        <option value="komoda">Komoda / szafka RTV</option>
+      </select>
+
+      <label for="size">Rozmiar (w m² lub ilość sztuk):</label>
+      <input type="number" id="size" name="size" placeholder="np. 10" min="1" required>
+
+      <button type="submit">Oblicz wycenę</button>
+    </form>
+
+    <div id="result" class="result-box" style="display:none;">
+      <p><strong>Szacowana cena:</strong> <span id="price"></span> zł</p>
+      <p class="note">* Wycena orientacyjna. Skontaktuj się z nami, by uzyskać dokładną ofertę.</p>
+    </div>
+  </section>
+
+  <footer class="main-footer">
+    <p>&copy; 2025 Meble Józef Dłużeń | j.dluzen@o2.pl</p>
+    <div class="socials">
+      <a href="#">Facebook</a> | <a href="#">Instagram</a>
+    </div>
+  </footer>
+</body>
+</html>
