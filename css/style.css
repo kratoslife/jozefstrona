@@ -51,10 +51,9 @@ body {
 
 /* Nawigacja */
 .main-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-left: 30px;
+  margin-left: auto;
+  margin-right: auto; /* Centers nav between logo and edge */
+  padding: 0 20px;
 }
 
 .main-nav a {
@@ -575,12 +574,11 @@ body {
 
 @media (max-width: 768px) {
   .main-header {
-    padding: 12px 5%;
+    flex-wrap: nowrap; /* Prevents logo from breaking */
   }
   
   .logo-link {
-    width: 160px;
-    order: 1;
+    flex-shrink: 0; /* Prevents logo from shrinking */
   }
   
   .mobile-menu-toggle {
