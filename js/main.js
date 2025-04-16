@@ -1,5 +1,39 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Mobile menu functionality
+  const form = document.getElementById('priceCalculator');
+
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const type = document.getElementById('type').value;
+      const size = parseFloat(document.getElementById('size').value);
+      let pricePerUnit = 0;
+
+      switch(type) {
+        case 'kuchnia':
+          pricePerUnit = 1800;
+          break;
+        case 'szafa':
+          pricePerUnit = 1500;
+          break;
+        case 'lazienka':
+          pricePerUnit = 1200;
+          break;
+        case 'komoda':
+          pricePerUnit = 800;
+          break;
+        default:
+          pricePerUnit = 0;
+      }
+
+      const totalPrice = size * pricePerUnit;
+      document.getElementById('price').innerText = totalPrice.toLocaleString('pl-PL');
+      document.getElementById('result').style.display = 'block';
+    });
+  }
+
+
   const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
   const mainNav = document.querySelector('.main-nav');
   const navOverlay = document.querySelector('.nav-overlay');

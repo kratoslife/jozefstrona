@@ -51,7 +51,7 @@ body {
   color: #d2b48c;
 }
 
-/* Mobile Menu Toggle */
+/* Mobile Menu */
 .mobile-menu-toggle {
   display: none;
   background: none;
@@ -239,6 +239,114 @@ body {
   color: #d2b48c;
 }
 
+/* Kalkulator */
+.calculator {
+  background-color: #fdf8f3;
+  padding: 60px 20px;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.calculator form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.calculator select,
+.calculator input {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.calculator button {
+  background-color: #8b5e3c;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.calculator button:hover {
+  background-color: #a8714d;
+}
+
+.result-box {
+  margin-top: 20px;
+  background-color: #fff7ec;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* Kontakt */
+.contact {
+  padding: 60px 20px;
+  background: #fdf8f3;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact form {
+  max-width: 600px;
+  margin: 0 auto 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact input,
+.contact textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.contact button {
+  background-color: #8b5e3c;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.map-container {
+  max-width: 600px;
+  margin: 0 auto 20px;
+}
+
+.call-btn {
+  display: block;
+  background-color: #d19b66;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  max-width: 250px;
+  margin: 20px auto;
+  transition: background-color 0.3s ease;
+}
+
+.call-btn:hover {
+  background-color: #b88755;
+}
+
 /* Animacje */
 .fade-in {
   animation: fadeIn 1s ease forwards;
@@ -314,6 +422,7 @@ body {
     display: block;
   }
 
+  /* Responsywność hero */
   .hero {
     padding: 80px 20px;
   }
@@ -326,6 +435,7 @@ body {
     font-size: 1.1rem;
   }
 
+  /* Galeria */
   .mini-gallery-grid, .gallery {
     grid-template-columns: 1fr;
     gap: 15px;
@@ -333,6 +443,34 @@ body {
 
   .mini-gallery-grid img, .gallery img {
     height: 200px;
+  }
+
+  /* Kalkulator */
+  .calculator {
+    padding: 30px 15px;
+  }
+  
+  .calculator form {
+    padding: 15px;
+  }
+  
+  .result-box {
+    padding: 15px;
+    margin: 15px auto;
+  }
+
+  /* Kontakt */
+  .contact {
+    padding: 30px 15px;
+  }
+  
+  .contact form {
+    padding: 15px;
+  }
+  
+  .call-btn {
+    width: 100%;
+    max-width: none;
   }
 }
 
@@ -343,5 +481,19 @@ body {
 
   .hero-text h1 {
     font-size: 2rem;
+  }
+
+  /* Formularze */
+  form input,
+  form textarea,
+  form select,
+  form button {
+    font-size: 16px !important;
+  }
+  
+  .calculator button,
+  .contact button {
+    width: 100%;
+    padding: 15px;
   }
 }
