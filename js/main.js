@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Mobile menu functionality
   const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-  const mainNav = document.querySelector('.main-nav');
+  const mainNav = document.querySelector('nav'); // Changed to target regular nav element
   const navOverlay = document.querySelector('.nav-overlay');
   const body = document.body;
 
@@ -12,13 +12,18 @@ document.addEventListener('DOMContentLoaded', function() {
     body.classList.toggle('menu-open');
     
     // Change icon between hamburger and X
-    mobileMenuToggle.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
+    if (mobileMenuToggle) {
+      mobileMenuToggle.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
+    }
   }
 
   // Initialize mobile menu if elements exist
   if (mobileMenuToggle && mainNav && navOverlay) {
     // Toggle menu when button clicked
-    mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+    mobileMenuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      toggleMobileMenu();
+    });
     
     // Close menu when overlay clicked
     navOverlay.addEventListener('click', toggleMobileMenu);
@@ -32,52 +37,35 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   }
-// Lightbox functionality
-function openLightbox(src) {
-  const lightbox = document.createElement('div');
-  lightbox.className = 'lightbox-overlay active';
-  lightbox.innerHTML = `
-    <div class="lightbox-content">
-      <img src="${src}" alt="Zoomed image">
-    </div>
-  `;
-  
-  lightbox.addEventListener('click', () => {
-    lightbox.remove();
-  });
-  
-  document.body.appendChild(lightbox);
-}
 
-// Attach to gallery images
-document.querySelectorAll('.mini-gallery-grid img, .gallery img').forEach(img => {
-  img.addEventListener('click', function() {
-    openLightbox(this.src);
-  });
-});
-  // Lightbox functionality
-  const galleryImages = document.querySelectorAll('.gallery img, .mini-gallery-grid img');
-  if (galleryImages.length > 0) {
-    const lightbox = document.createElement('div');
-    lightbox.id = 'lightbox';
-    lightbox.classList.add('lightbox-overlay');
+  // Single Lightbox implementation
+  function initLightbox() {
+    const galleryImages = document.querySelectorAll('.gallery img, .mini-gallery-grid img');
     
-    const lightboxImg = document.createElement('img');
-    lightbox.appendChild(lightboxImg);
-    document.body.appendChild(lightbox);
-
     galleryImages.forEach(image => {
       image.addEventListener('click', function(e) {
         e.preventDefault();
-        lightbox.classList.add('active');
-        lightboxImg.src = this.src;
-        lightboxImg.alt = this.alt;
+        
+        const lightbox = document.createElement('div');
+        lightbox.className = 'lightbox-overlay active';
+        lightbox.innerHTML = `
+          <div class="lightbox-content">
+            <img src="${this.src}" alt="${this.alt}">
+          </div>
+        `;
+        
+        lightbox.addEventListener('click', function() {
+          this.remove();
+        });
+        
+        document.body.appendChild(lightbox);
       });
     });
+  }
 
-    lightbox.addEventListener('click', function() {
-      this.classList.remove('active');
-    });
+  // Initialize lightbox if gallery images exist
+  if (document.querySelector('.gallery img, .mini-gallery-grid img')) {
+    initLightbox();
   }
 
   // Random hero background (only on index page)
