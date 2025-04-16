@@ -17,74 +17,39 @@ body {
 .main-header {
   background-color: rgba(60, 40, 20, 0.95);
   color: #f5eee0;
-  padding: 15px;
+  padding: 18px;
+  text-align: center;
   position: sticky;
   top: 0;
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  z-index: 10;
 }
 
 .main-header .logo {
   font-size: 2.2rem;
   font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .main-nav {
   display: flex;
-  gap: 25px;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 15px;
 }
 
 .main-nav a {
+  margin: 0 15px;
   text-decoration: none;
   color: #f5eee0;
   font-weight: 500;
   transition: color 0.3s ease;
-  padding: 5px 0;
-  position: relative;
 }
 
 .main-nav a:hover {
   color: #d2b48c;
 }
 
-.main-nav a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #d2b48c;
-  transition: width 0.3s ease;
-}
-
-.main-nav a:hover::after {
-  width: 100%;
-}
-
-/* Mobile Menu Toggle - ukryty na desktopie */
-.mobile-menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: #f5eee0;
-  font-size: 2rem;
-  cursor: pointer;
-  padding: 5px;
-  z-index: 101;
-}
-
-.nav-overlay {
-  display: none;
-}
-
-/* Hero sekcja */
+/* Hero sekcja - ORYGINALNA WERSJA */
 .hero {
   background: linear-gradient(rgba(80, 55, 30, 0.7), rgba(80, 55, 30, 0.7)), url('../images/tlo-drewno.jpg') no-repeat center center;
   background-size: cover;
@@ -118,10 +83,11 @@ body {
 .hero-text p {
   font-size: 1.3rem;
   color: #e8d5b5;
+  margin-bottom: 2rem;
 }
 
 .hero-text .btn {
-  padding: 10px 25px;
+  padding: 12px 30px;
   background-color: #a9744f;
   color: #fff;
   border-radius: 4px;
@@ -133,6 +99,82 @@ body {
 
 .hero-text .btn:hover {
   background-color: #8d5e3a;
+}
+
+/* Galeria - POPRAWIONA WERSJA */
+.mini-gallery {
+  margin: 50px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.mini-gallery h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.mini-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.mini-gallery-grid img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.mini-gallery-grid img:hover {
+  transform: scale(1.05);
+}
+
+/* Strona galerii */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Lightbox */
+#lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border: 5px solid #fff;
+  border-radius: 10px;
 }
 
 /* Stopka */
@@ -154,87 +196,6 @@ body {
   color: #d2b48c;
 }
 
-/* Galeria - poprawione style */
-.gallery-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.gallery, .mini-gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  width: 100%;
-}
-
-.gallery img, .mini-gallery-grid img {
-  width: 100%;
-  height: 250px; /* Stała wysokość dla wszystkich zdjęć */
-  object-fit: cover; /* Zapewnia poprawne skalowanie zdjęć */
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.gallery img:hover, .mini-gallery-grid img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-
-/* Lightbox */
-#lightbox, .lightbox-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-#lightbox img, .lightbox-overlay img {
-  max-width: 90%;
-  max-height: 90%;
-  border: 5px solid #fff;
-  border-radius: 10px;
-}
-
-/* Formularz */
-form {
-  max-width: 600px;
-  margin: 30px auto;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 25px;
-  border-radius: 10px;
-}
-
-form input, form textarea, form select {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #bbb;
-  border-radius: 5px;
-}
-
-form button {
-  padding: 12px 25px;
-  background-color: #7c4f2a;
-  border: none;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-form button:hover {
-  background-color: #a06a3d;
-}
-
 /* Animacje */
 .fade-in {
   animation: fadeIn 1s ease forwards;
@@ -247,98 +208,33 @@ form button:hover {
   }
 }
 
-/* Sekcje */
-.mini-gallery, .testimonials, .contact, .calculator {
-  margin: 50px auto;
-  max-width: 1200px;
-  padding: 0 20px;
+/* Mobile Menu */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #f5eee0;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 101;
 }
 
-.testimonials {
-  background-color: #f7f1ea;
-  padding: 60px 20px;
-  text-align: center;
+.nav-overlay {
+  display: none;
 }
 
-.testimonial-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 30px;
-}
-
-.testimonial {
-  background-color: #fff;
-  border-left: 5px solid #8b5e3c;
-  padding: 20px;
-  max-width: 300px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-  border-radius: 8px;
-  font-style: italic;
-}
-
-.testimonial span {
-  display: block;
-  margin-top: 10px;
-  font-weight: bold;
-  color: #333;
-}
-
-.contact {
-  padding: 60px 20px;
-  background: #fdf8f3;
-}
-
-.map-container {
-  max-width: 600px;
-  margin: 0 auto 20px;
-}
-
-.call-btn {
-  display: block;
-  background-color: #d19b66;
-  color: white;
-  text-align: center;
-  padding: 12px;
-  border-radius: 6px;
-  font-weight: bold;
-  text-decoration: none;
-  max-width: 250px;
-  margin: 20px auto;
-  transition: background-color 0.3s ease;
-}
-
-.call-btn:hover {
-  background-color: #b88755;
-}
-
-/* Mobile Menu Styles */
 @media (max-width: 768px) {
   .main-header {
-    flex-direction: row;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
     text-align: left;
-    .gallery, .mini-gallery-grid {
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 15px;
-    }
-    
-    .gallery img, .mini-gallery-grid img {
-      height: 200px;
-    }
   }
-  
-  @media (max-width: 480px) {
-    .gallery, .mini-gallery-grid {
-      grid-template-columns: 1fr;
-    }
-  }
+
   .main-header .logo {
     margin-bottom: 0;
-    font-size: 1.8rem;
   }
 
   .mobile-menu-toggle {
@@ -356,8 +252,6 @@ form button:hover {
     padding: 80px 20px 20px;
     transition: left 0.3s ease;
     z-index: 99;
-    justify-content: flex-start;
-    gap: 10px;
   }
 
   .main-nav.active {
@@ -372,10 +266,6 @@ form button:hover {
     text-align: center;
   }
 
-  .main-nav a::after {
-    display: none;
-  }
-
   .nav-overlay {
     display: none;
     position: fixed;
@@ -387,17 +277,13 @@ form button:hover {
     z-index: 98;
   }
 
-  body.menu-open {
-    overflow: hidden;
-  }
-
   body.menu-open .nav-overlay {
     display: block;
   }
 
-  /* Responsywne dostosowania */
+  /* Responsywność hero */
   .hero {
-    padding: 60px 20px;
+    padding: 80px 20px;
   }
 
   .hero-text h1 {
@@ -408,39 +294,27 @@ form button:hover {
     font-size: 1.1rem;
   }
 
+  /* Responsywność galerii */
   .mini-gallery-grid, .gallery {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
   }
 
-  .testimonial-list {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .testimonial {
-    max-width: 100%;
+  .mini-gallery-grid img, .gallery img {
+    height: 180px;
   }
 }
 
-/* Dodatkowe poprawki dla małych ekranów */
 @media (max-width: 480px) {
-  .main-header .logo {
-    font-size: 1.5rem;
+  .hero {
+    padding: 60px 15px;
   }
 
   .hero-text h1 {
     font-size: 2rem;
   }
-}
 
-/* Zapobieganie powiększaniu przy focusowaniu inputów na mobile */
-@media screen and (max-width: 768px) {
-  input, select, textarea {
-    font-size: 16px !important;
+  .mini-gallery-grid, .gallery {
+    grid-template-columns: 1fr;
   }
-}
-
-/* Efekt dotykowy dla przycisków i linków */
-button, a {
-  -webkit-tap-highlight-color: transparent;
 }
