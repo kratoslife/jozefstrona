@@ -17,7 +17,7 @@ body {
 .main-header {
   background-color: rgba(60, 40, 20, 0.95);
   color: #f5eee0;
-  padding: 20px;
+  padding: 18px;
   text-align: center;
   position: sticky;
   top: 0;
@@ -502,5 +502,49 @@ button, a {
 @media screen and (max-width: 600px) {
   input, select, textarea {
     font-size: 16px !important;
+  }
+}
+/* Mobile Menu */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #f5eee0;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.main-nav {
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+  
+  .main-nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: rgba(60, 40, 20, 0.98);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 20px 0;
+  }
+  
+  .main-nav.active {
+    display: flex;
+  }
+  
+  .main-nav a {
+    padding: 12px 20px;
+    margin: 0;
+    border-bottom: 1px solid rgba(245, 238, 224, 0.1);
   }
 }

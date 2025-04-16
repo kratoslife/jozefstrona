@@ -61,3 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
     hero.style.backgroundImage = `url('images/${randomImg}')`;
   }
 });
+// Mobile menu toggle
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const mainNav = document.querySelector('.main-nav');
+
+if (mobileMenuToggle && mainNav) {
+  mobileMenuToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('active');
+  });
+}
