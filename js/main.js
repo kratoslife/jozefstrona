@@ -185,4 +185,12 @@ if (priceForm) {
       console.log('No gallery images found for background');
     }
   }
+  // =============================================
+  // Current Year in Footer
+  // =============================================
+  const yearElement = document.querySelector('.main-footer p');
+  if (yearElement) {
+    const currentYear = new Date().getFullYear();
+    yearElement.textContent = yearElement.textContent.replace('2025', currentYear);
+  }
 });
