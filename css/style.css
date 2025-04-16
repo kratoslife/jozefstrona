@@ -21,32 +21,52 @@ body {
   text-align: center;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
 }
 
 .main-header .logo {
   font-size: 2.2rem;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
-.main-header nav {
+.main-nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
+  gap: 20px;
 }
 
-.main-header nav a {
-  margin: 0 15px;
+.main-nav a {
   text-decoration: none;
   color: #f5eee0;
   font-weight: 500;
   transition: color 0.3s ease;
+  padding: 5px 10px;
 }
 
-.main-header nav a:hover {
+.main-nav a:hover {
   color: #d2b48c;
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #f5eee0;
+  font-size: 2rem;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 25px;
+  z-index: 1001;
+}
+
+.nav-overlay {
+  display: none;
 }
 
 /* Hero sekcja */
@@ -101,7 +121,7 @@ body {
   background-color: #8d5e3a;
 }
 
-/* Galeria - ORYGINALNA WERSJA DZIAŁAJĄCA */
+/* Galeria */
 .mini-gallery {
   margin: 50px auto;
   max-width: 1200px;
@@ -116,29 +136,28 @@ body {
 
 .mini-gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
 }
 
 .mini-gallery-grid img {
   width: 100%;
-  height: 250px;
+  height: 220px;
   object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
   box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
 .mini-gallery-grid img:hover {
-  transform: scale(1.02);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transform: scale(1.03);
 }
 
 /* Strona galerii */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 25px;
   padding: 30px;
   max-width: 1400px;
@@ -147,20 +166,19 @@ body {
 
 .gallery img {
   width: 100%;
-  height: 300px;
+  height: 280px;
   object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
   box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
 .gallery img:hover {
-  transform: scale(1.02);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transform: scale(1.03);
 }
 
-/* Lightbox - POPRAWIONA WERSJA */
+/* Lightbox */
 .lightbox-overlay {
   display: none;
   position: fixed;
@@ -181,9 +199,6 @@ body {
 .lightbox-content {
   max-width: 90%;
   max-height: 90%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .lightbox-content img {
@@ -196,7 +211,7 @@ body {
 
 @keyframes zoomIn {
   from {
-    transform: scale(0.8);
+    transform: scale(0.9);
     opacity: 0;
   }
   to {
@@ -236,35 +251,10 @@ body {
   }
 }
 
-/* Mobile Menu */
-.mobile-menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: #f5eee0;
-  font-size: 2rem;
-  cursor: pointer;
-  padding: 5px;
-  z-index: 101;
-}
-
-.nav-overlay {
-  display: none;
-}
-
-@media (max-width: 992px) {
-  .gallery {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  }
-  
-  .gallery img {
-    height: 250px;
-  }
-}
-
+/* Mobile Styles */
 @media (max-width: 768px) {
   .main-header {
-    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
@@ -280,7 +270,7 @@ body {
     display: block;
   }
 
-  .main-header nav {
+  .main-nav {
     position: fixed;
     top: 0;
     left: -100%;
@@ -290,14 +280,14 @@ body {
     flex-direction: column;
     padding: 80px 20px 20px;
     transition: left 0.3s ease;
-    z-index: 99;
+    z-index: 999;
   }
 
-  .main-header nav.active {
+  .main-nav.active {
     left: 0;
   }
 
-  .main-header nav a {
+  .main-nav a {
     padding: 15px;
     margin: 5px 0;
     background: rgba(80, 55, 30, 0.7);
@@ -313,14 +303,17 @@ body {
     right: 0;
     bottom: 0;
     background: rgba(0,0,0,0.5);
-    z-index: 98;
+    z-index: 998;
+  }
+
+  body.menu-open {
+    overflow: hidden;
   }
 
   body.menu-open .nav-overlay {
     display: block;
   }
 
-  /* Responsywność hero */
   .hero {
     padding: 80px 20px;
   }
@@ -333,17 +326,12 @@ body {
     font-size: 1.1rem;
   }
 
-  /* Responsywność galerii */
   .mini-gallery-grid, .gallery {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: 1fr;
     gap: 15px;
   }
 
-  .mini-gallery-grid img {
-    height: 200px;
-  }
-  
-  .gallery img {
+  .mini-gallery-grid img, .gallery img {
     height: 200px;
   }
 }
@@ -355,13 +343,5 @@ body {
 
   .hero-text h1 {
     font-size: 2rem;
-  }
-
-  .mini-gallery-grid, .gallery {
-    grid-template-columns: 1fr;
-  }
-  
-  .mini-gallery-grid img, .gallery img {
-    height: 180px;
   }
 }
