@@ -30,7 +30,7 @@ body {
 /* Nowe style dla logo */
 .logo-link {
   display: block;
-  width: 220px; /* Rozmiar na desktop */
+  width: 360px; /* Rozmiar na desktop */
   margin-right: auto;
   z-index: 1001;
   transition: transform 0.3s ease;
@@ -39,10 +39,10 @@ body {
 .logo-image {
   width: 100%;
   height: auto;
-  max-height: 90px;
+  max-height: 150px;
   object-fit: contain;
   image-rendering: -webkit-optimize-contrast;
-  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
 }
 
 .logo-link:hover .logo-image {
@@ -561,7 +561,7 @@ body {
 /* Mobile Styles */
 @media (max-width: 992px) {
   .logo-link {
-    width: 180px;
+    width: 300px;
   }
   
   .hero-text h1 {
@@ -662,13 +662,14 @@ body {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .logo-link {
-    width: 140px; /* 3x większe niż poprzednio */
+    width: 240px; /* 3x większe niż poprzednio */
+    margin-left: 0;
   }
   
   .logo-image {
-    max-height: 70px;
+    max-height: 120px;
   }
   
   .hero {
