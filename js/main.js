@@ -1,4 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('priceCalculator');
+
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const type = document.getElementById('type').value;
+      const size = parseFloat(document.getElementById('size').value);
+      let pricePerUnit = 0;
+
+      switch(type) {
+        case 'kuchnia':
+          pricePerUnit = 1800;
+          break;
+        case 'szafa':
+          pricePerUnit = 1500;
+          break;
+        case 'lazienka':
+          pricePerUnit = 1200;
+          break;
+        case 'komoda':
+          pricePerUnit = 800;
+          break;
+        default:
+          pricePerUnit = 0;
+      }
+
+      const totalPrice = size * pricePerUnit;
+      document.getElementById('price').innerText = totalPrice.toLocaleString('pl-PL');
+      document.getElementById('result').style.display = 'block';
+    });
+  }
+
   // Lightbox
   const images = document.querySelectorAll('.gallery img, .mini-gallery-grid img');
   const lightbox = document.createElement('div');
@@ -20,29 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
     lightbox.style.display = 'none';
   });
 
-  // Losowe tło w hero
+  // Hero losowe tło
   const hero = document.getElementById('hero');
   if (hero) {
-    const bgImages = ['sample1.jpg', 'sample2.jpg', 'sample3.jpg', 'sample4.jpg'];
-    const chosen = bgImages[Math.floor(Math.random() * bgImages.length)];
-    hero.style.backgroundImage = `linear-gradient(rgba(80, 55, 30, 0.7), rgba(80, 55, 30, 0.7)), url('images/${chosen}')`;
+    const images = ['sample1.jpg', 'sample2.jpg', 'sample3.jpg', 'sample4.jpg'];
+    const randomImg = images[Math.floor(Math.random() * images.length)];
+    hero.style.backgroundImage = `url('images/${randomImg}')`;
   }
-  // Mobile menu toggle
-  const burger = document.getElementById('burger');
-  const nav = document.getElementById('main-nav');
-
-  burger.addEventListener('click', () => {
-    nav.classList.toggle('active');
-    // Burger animation
-    burger.classList.toggle('active');
-  });
-
-  // Close menu when clicking on a link
-  const navLinks = document.querySelectorAll('.main-nav a');
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('active');
-      burger.classList.remove('active');
-    });
-  });
 });
