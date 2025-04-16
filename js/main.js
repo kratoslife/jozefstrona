@@ -163,22 +163,26 @@ if (priceForm) {
   // Check on scroll
   window.addEventListener('scroll', animateOnScroll);
 
-  // =============================================
-  // Random Hero Background (if exists)
-  // =============================================
-  const hero = document.getElementById('hero'); // Make sure your hero section has id="hero"
+  // ===== Random Gallery Background =====
+  const hero = document.querySelector('.hero');
   if (hero) {
-    const images = ['tlo-drewno.jpg', 'tlo-drewno2.jpg', 'tlo-drewno3.jpg']; // Ensure these images exist
-    const randomImg = images[Math.floor(Math.random() * images.length)];
-    hero.style.backgroundImage = `linear-gradient(rgba(80, 55, 30, 0.7), rgba(80, 55, 30, 0.7)), url('images/${randomImg}')`;
-  }
-
-  // =============================================
-  // Current Year in Footer
-  // =============================================
-  const yearElement = document.querySelector('.main-footer p');
-  if (yearElement) {
-    const currentYear = new Date().getFullYear();
-    yearElement.textContent = yearElement.textContent.replace('2025', currentYear);
+    // Try to get images from both galleries
+    const galleryImages = Array.from(document.querySelectorAll('.gallery img, .mini-gallery-grid img'));
+    
+    if (galleryImages.length > 0) {
+      const randomImg = galleryImages[Math.floor(Math.random() * galleryImages.length)];
+      
+      // Preload image
+      const preload = new Image();
+      preload.src = randomImg.src;
+      preload.onload = function() {
+        hero.style.backgroundImage = `
+          linear-gradient(rgba(80, 55, 30, 0.7)), 
+          url('${randomImg.src}')
+        `;
+      };
+    } else {
+      console.log('No gallery images found for background');
+    }
   }
 });
