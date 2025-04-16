@@ -32,7 +32,29 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   }
+// Lightbox functionality
+function openLightbox(src) {
+  const lightbox = document.createElement('div');
+  lightbox.className = 'lightbox-overlay active';
+  lightbox.innerHTML = `
+    <div class="lightbox-content">
+      <img src="${src}" alt="Zoomed image">
+    </div>
+  `;
+  
+  lightbox.addEventListener('click', () => {
+    lightbox.remove();
+  });
+  
+  document.body.appendChild(lightbox);
+}
 
+// Attach to gallery images
+document.querySelectorAll('.mini-gallery-grid img, .gallery img').forEach(img => {
+  img.addEventListener('click', function() {
+    openLightbox(this.src);
+  });
+});
   // Lightbox functionality
   const galleryImages = document.querySelectorAll('.gallery img, .mini-gallery-grid img');
   if (galleryImages.length > 0) {
