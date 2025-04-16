@@ -61,12 +61,33 @@ document.addEventListener('DOMContentLoaded', () => {
     hero.style.backgroundImage = `url('images/${randomImg}')`;
   }
 });
-// Mobile menu toggle
-const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-const mainNav = document.querySelector('.main-nav');
+// Mobile menu functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+  const mainNav = document.querySelector('.main-nav');
 
-if (mobileMenuToggle && mainNav) {
-  mobileMenuToggle.addEventListener('click', () => {
-    mainNav.classList.toggle('active');
-  });
-}
+  if (mobileMenuToggle && mainNav) {
+    mobileMenuToggle.addEventListener('click', function() {
+      mainNav.classList.toggle('active');
+      // Change icon based on state
+      this.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
+    });
+    // Add this to your mobile menu toggle event
+  if (mainNav.classList.contains('active')) {
+    document.body.classList.add('menu-open');
+  } else {
+    document.body.classList.remove('menu-open');
+  }
+    // Close menu when clicking on a link (for single-page navigation)
+    mainNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          mainNav.classList.remove('active');
+          mobileMenuToggle.textContent = '☰';
+        }
+      });
+    });
+  }
+});
+
+
