@@ -370,8 +370,9 @@ body {
   }
 
   .main-header .logo {
-    margin-bottom: 0;
-    font-size: 1.8rem;
+    font-size: 1.5rem !important; /* Adjust this value as needed */
+    white-space: nowrap; /* Prevents text from breaking into multiple lines */
+    max-width: 80%; /* Ensures it doesn't overflow */
   }
 
   .mobile-menu-toggle {
@@ -606,4 +607,36 @@ body {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
+}
+/* Logo Styles */
+.logo-link {
+  display: inline-block;
+  max-width: 180px; /* Adjust based on your logo size */
+  margin: 0 auto;
+}
+
+.logo-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.logo-image:hover {
+  opacity: 0.9;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .logo-link {
+    max-width: 140px; /* Smaller on mobile */
+    margin-left: 10px; /* Aligns better with menu button */
+  }
+  
+  /* If you need even smaller */
+  @media (max-width: 480px) {
+    .logo-link {
+      max-width: 120px;
+    }
+  }
 }
