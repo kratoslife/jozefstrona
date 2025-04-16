@@ -13,28 +13,31 @@ body {
   line-height: 1.6;
 }
 
-/* Nagłówek */
+/* Nagłówek - nowa wersja z wycentrowanym menu */
 .main-header {
   background-color: rgba(60, 40, 20, 0.95);
   color: #f5eee0;
-  padding: 18px;
+  padding: 15px;
   position: sticky;
   top: 0;
   z-index: 100;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
+  text-align: center;
 }
 
 .main-header .logo {
   font-size: 2.2rem;
   font-weight: bold;
+  margin-bottom: 15px;
 }
 
 .main-nav {
   display: flex;
-  gap: 15px;
+  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .main-nav a {
@@ -42,13 +45,30 @@ body {
   color: #f5eee0;
   font-weight: 500;
   transition: color 0.3s ease;
+  padding: 5px 0;
+  position: relative;
 }
 
 .main-nav a:hover {
   color: #d2b48c;
 }
 
-/* Mobile Menu Toggle */
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #d2b48c;
+  transition: width 0.3s ease;
+}
+
+.main-nav a:hover::after {
+  width: 100%;
+}
+
+/* Mobile Menu Toggle - ukryty na desktopie */
 .mobile-menu-toggle {
   display: none;
   background: none;
@@ -58,6 +78,10 @@ body {
   cursor: pointer;
   padding: 5px;
   z-index: 101;
+}
+
+.nav-overlay {
+  display: none;
 }
 
 /* Hero sekcja */
@@ -281,6 +305,19 @@ form button:hover {
 
 /* Mobile Menu Styles */
 @media (max-width: 768px) {
+  .main-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    text-align: left;
+  }
+
+  .main-header .logo {
+    margin-bottom: 0;
+    font-size: 1.8rem;
+  }
+
   .mobile-menu-toggle {
     display: block;
   }
@@ -296,6 +333,8 @@ form button:hover {
     padding: 80px 20px 20px;
     transition: left 0.3s ease;
     z-index: 99;
+    justify-content: flex-start;
+    gap: 10px;
   }
 
   .main-nav.active {
@@ -307,6 +346,11 @@ form button:hover {
     margin: 5px 0;
     background: rgba(80, 55, 30, 0.7);
     border-radius: 4px;
+    text-align: center;
+  }
+
+  .main-nav a::after {
+    display: none;
   }
 
   .nav-overlay {
@@ -329,10 +373,6 @@ form button:hover {
   }
 
   /* Responsywne dostosowania */
-  .main-header {
-    padding: 15px;
-  }
-
   .hero {
     padding: 60px 20px;
   }
@@ -362,7 +402,7 @@ form button:hover {
 /* Dodatkowe poprawki dla małych ekranów */
 @media (max-width: 480px) {
   .main-header .logo {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
 
   .hero-text h1 {
