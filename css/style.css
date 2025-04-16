@@ -13,7 +13,7 @@ body {
   line-height: 1.6;
 }
 
-/* Nagłówek - nowa wersja z wycentrowanym menu */
+/* Nagłówek */
 .main-header {
   background-color: rgba(60, 40, 20, 0.95);
   color: #f5eee0;
@@ -154,23 +154,33 @@ body {
   color: #d2b48c;
 }
 
-/* Galeria */
+/* Galeria - poprawione style */
+.gallery-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 .gallery, .mini-gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
-  padding: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
 }
 
 .gallery img, .mini-gallery-grid img {
   width: 100%;
+  height: 250px; /* Stała wysokość dla wszystkich zdjęć */
+  object-fit: cover; /* Zapewnia poprawne skalowanie zdjęć */
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .gallery img:hover, .mini-gallery-grid img:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 /* Lightbox */
@@ -311,8 +321,21 @@ form button:hover {
     align-items: center;
     padding: 15px;
     text-align: left;
+    .gallery, .mini-gallery-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    
+    .gallery img, .mini-gallery-grid img {
+      height: 200px;
+    }
   }
-
+  
+  @media (max-width: 480px) {
+    .gallery, .mini-gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
   .main-header .logo {
     margin-bottom: 0;
     font-size: 1.8rem;
