@@ -55,31 +55,17 @@ document.addEventListener('DOMContentLoaded', function() {
       img.addEventListener('click', function() {
         const lightbox = document.createElement('div');
         lightbox.className = 'lightbox-overlay active';
-        lightbox.setAttribute('role', 'dialog');
-        lightbox.setAttribute('aria-modal', 'true');
-        lightbox.setAttribute('aria-label', 'Powiększone zdjęcie');
         
         lightbox.innerHTML = `
           <div class="lightbox-content">
             <img src="${this.src}" alt="${this.alt || 'Powiększone zdjęcie'}">
-            <button class="lightbox-close" aria-label="Zamknij powiększenie">&times;</button>
           </div>
         `;
         
-        // Close lightbox when clicking overlay or close button
-        lightbox.addEventListener('click', function(e) {
-          if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
-            this.remove();
-            document.body.classList.remove('menu-open');
-          }
-        });
-        
-        // Close with Escape key
-        document.addEventListener('keydown', function closeOnEscape(e) {
-          if (e.key === 'Escape') {
-            lightbox.remove();
-            document.removeEventListener('keydown', closeOnEscape);
-          }
+        // Close when clicking anywhere
+        lightbox.addEventListener('click', function() {
+          this.remove();
+          document.body.classList.remove('menu-open');
         });
         
         document.body.appendChild(lightbox);
@@ -89,69 +75,46 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   initLightbox();
 
-  // =============================================
-  // Price Calculator Functionality
-  // =============================================
-  const priceForm = document.getElementById('priceCalculator');
-  if (priceForm) {
-    priceForm.addEventListener('submit', function(e) {
-      e.preventDefault();
+// Price Calculator Functionality
+const priceForm = document.getElementById('priceCalculator');
+if (priceForm) {
+  priceForm.addEventListener('submit', function(e) {
+    e.preventDefault();
 
-      const type = document.getElementById('type').value;
-      const size = parseFloat(document.getElementById('size').value) || 0;
-      const material = document.getElementById('material').value;
-      let pricePerUnit = 0;
+    const type = document.getElementById('type').value;
+    const material = document.getElementById('material').value;
+    const size = parseFloat(document.getElementById('size').value) || 0;
+    let pricePerUnit = 0;
 
-      // Base prices
-      switch(type) {
-        case 'kuchnia':
-          pricePerUnit = 1800;
-          break;
-        case 'szafa':
-          pricePerUnit = 1500;
-          break;
-        case 'lazienka':
-          pricePerUnit = 1200;
-          break;
-        case 'komoda':
-          pricePerUnit = 800;
-          break;
-        default:
-          pricePerUnit = 0;
-      }
+    // Base prices
+    switch(type) {
+      case 'kuchnia': pricePerUnit = 1800; break;
+      case 'szafa': pricePerUnit = 1500; break;
+      case 'lazienka': pricePerUnit = 1200; break;
+      case 'komoda': pricePerUnit = 800; break;
+      default: pricePerUnit = 0;
+    }
 
-      // Material multipliers
-      switch(material) {
-        case 'dab':
-          pricePerUnit *= 1.3;
-          break;
-        case 'sosna':
-          pricePerUnit *= 0.9;
-          break;
-        case 'buk':
-          pricePerUnit *= 1.1;
-          break;
-        case 'modrzew':
-          pricePerUnit *= 1.2;
-          break;
-      }
+    // Material multipliers
+    switch(material) {
+      case 'dab': pricePerUnit *= 1.3; break;
+      case 'sosna': pricePerUnit *= 0.9; break;
+      case 'buk': pricePerUnit *= 1.1; break;
+      case 'modrzew': pricePerUnit *= 1.2; break;
+    }
 
-      const totalPrice = size * pricePerUnit;
-      const resultElement = document.getElementById('result');
-      
-      if (totalPrice > 0) {
-        document.getElementById('price').textContent = totalPrice.toLocaleString('pl-PL') + ' zł';
-        resultElement.style.display = 'block';
-        
-        // Add animation
-        resultElement.classList.remove('fade-in');
-        void resultElement.offsetWidth; // Trigger reflow
-        resultElement.classList.add('fade-in');
-      } else {
-        resultElement.style.display = 'none';
-      }
-    });
-  }
+    const totalPrice = size * pricePerUnit;
+    const resultElement = document.getElementById('result');
+    
+    if (totalPrice > 0) {
+      document.getElementById('price').textContent = totalPrice.toLocaleString('pl-PL');
+      resultElement.style.display = 'block';
+    } else {
+      resultElement.style.display = 'none';
+      alert('Proszę wybrać rodzaj mebla i podać rozmiar');
+    }
+  });
+}
 
   // =============================================
   // Form Validation
@@ -203,9 +166,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // =============================================
   // Random Hero Background (if exists)
   // =============================================
-  const hero = document.querySelector('.hero');
-  if (hero && !hero.style.backgroundImage) {
-    const images = ['tlo-drewno.jpg', 'tlo-drewno2.jpg', 'tlo-drewno3.jpg'];
+  const hero = document.getElementById('hero'); // Make sure your hero section has id="hero"
+  if (hero) {
+    const images = ['tlo-drewno.jpg', 'tlo-drewno2.jpg', 'tlo-drewno3.jpg']; // Ensure these images exist
     const randomImg = images[Math.floor(Math.random() * images.length)];
     hero.style.backgroundImage = `linear-gradient(rgba(80, 55, 30, 0.7), rgba(80, 55, 30, 0.7)), url('images/${randomImg}')`;
   }
