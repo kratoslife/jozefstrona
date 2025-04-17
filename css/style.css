@@ -5,7 +5,10 @@
   box-sizing: border-box;
   outline: none; /* Removes red outlines */
 }
-
+body, html {
+  margin: 0;
+  padding: 0;
+}
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: url('../images/tlo-drewno.jpg') no-repeat center center fixed;
@@ -13,41 +16,49 @@ body {
   color: #3b2c1a;
   line-height: 1.6;
 }
+/* ==== Image not select === */
+img {
+  user-select: none; /* Wyłącza zaznaczanie obrazków */
+  pointer-events: none; /* Wyłącza interakcje z obrazkami */
+}
 
 /* ===== MAIN HEADER WITH 2X LARGER CENTERED LOGO ===== */
 .main-header {
-  background-color: rgba(60, 40, 20, 0.95);
+  background-color: rgba(60, 40, 20, 1);
   position: sticky;
   top: 0;
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centers the entire header */
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .logo-container {
   width: 100%;
   display: flex;
-  justify-content: center; /* Centers the logo horizontally */
+  justify-content: center;
   padding: 20px 0;
-  background-color: rgba(60, 40, 20, 0.98);
+  margin: 0;
+  background-color: rgba(60, 40, 20, 1); /* solid brown */
 }
 
 .logo-link {
   display: block;
-  width: min(600px, 100%); /* Keeps logo width larger */
+  width: min(600px, 100%);
 }
 
 .logo-image {
   width: 100%;
   height: auto;
-  max-height: 180px; /* Makes logo taller */
+  max-height: 160px; /* Mniejsze logo */
   object-fit: contain;
-  margin: 0 auto; /* Ensures logo is centered */
+  margin: 0 auto;
 }
 
 .logo-link:hover .logo-image {
-  transform: scale(1.05); /* Slight zoom effect on hover */
+  transform: scale(1.05);
 }
 
 /* ===== NAVIGATION ===== */
@@ -55,10 +66,11 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 15px 5%;
-  background-color: rgba(50, 35, 15, 0.95); /* Slightly different brown for the menu */
+  padding: 10px 5%;
+  margin: 0;
+  background-color: rgba(50, 30, 15, 1); /* darker brown */
   position: relative;
-  top: -10px;
+  top: 0;
   z-index: 9999;
 }
 
@@ -67,14 +79,14 @@ body {
   text-decoration: none;
   font-weight: 500;
   font-size: 1.1rem;
-  padding: 10px 15px;
+  padding: 8px 15px;
   transition: all 0.3s ease;
   border-radius: 4px;
 }
 
 .main-nav a:hover {
-  color: #d2b48c; /* Light brown color on hover */
-  background: rgba(80, 55, 30, 0.5); /* Slight background color change on hover */
+  color: #d2b48c;
+  background: rgba(80, 55, 30, 0.5);
 }
 
 .mobile-menu-toggle {
