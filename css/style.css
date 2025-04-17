@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: none; /* Removes red outlines */
 }
 
 body {
@@ -21,30 +22,29 @@ body {
   z-index: 1000;
   display: flex;
   flex-direction: column;
+  align-items: center; /* Center everything */
 }
 
 .logo-container {
   width: 100%;
   display: flex;
-  justify-content: center;
-  padding: 30px 0;
+  justify-content: center; /* Center horizontally */
+  padding: 25px 0;
   background-color: rgba(60, 40, 20, 0.98);
   border-bottom: 1px solid rgba(210, 180, 140, 0.3);
 }
 
 .logo-link {
   display: block;
-  width: min(800px, 90vw); /* Twice as wide */
-  transition: transform 0.4s ease;
+  width: min(600px, 80vw);
+  margin: 0 auto; /* Center logo */
 }
 
 .logo-image {
   width: 100%;
   height: auto;
-  max-height: 250px; /* Twice as tall */
+  max-height: 180px;
   object-fit: contain;
-  image-rendering: -webkit-optimize-contrast;
-  filter: drop-shadow(0 3px 5px rgba(0,0,0,0.4));
 }
 
 .logo-link:hover .logo-image {
@@ -55,10 +55,9 @@ body {
 .main-nav {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   gap: 25px;
   padding: 20px 5%;
-  background-color: rgba(50, 35, 15, 0.95);
+  width: 100%;
 }
 
 .main-nav a {
@@ -613,11 +612,11 @@ body {
   }
   
   .logo-link {
-    width: min(500px, 85vw);
+    width: min(500px, 85vw); /* Bigger on mobile */
   }
   
   .logo-image {
-    max-height: 180px;
+    max-height: 160px; /* Increased mobile size */
   }
   
   .main-header {
@@ -628,19 +627,20 @@ body {
   
   .mobile-menu-toggle {
     display: block;
+    position: absolute;
+    right: 20px;
+    top: 20px;
   }
   
   .main-nav {
+    flex-direction: column;
+    align-items: center;
     position: fixed;
     top: 0;
     left: -100%;
-    width: 85%;
     height: 100vh;
-    background-color: rgba(60, 40, 20, 0.98);
-    flex-direction: column;
-    padding: 100px 30px 30px;
-    transition: left 0.4s ease;
-    z-index: 1000;
+    background: rgba(60, 40, 20, 0.98);
+    transition: left 0.3s ease;
   }
   
   .main-nav.active {
