@@ -123,14 +123,14 @@ if (priceForm) {
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
       let isValid = true;
-      const inputs = contactForm.querySelectorAll('input[required], textarea[required]');
+      const inputs = contactForm.querySelectorAll('input[type="text"][required], input[type="email"][required], textarea[required]');
       
       inputs.forEach(input => {
         if (!input.value.trim()) {
-          input.style.borderColor = 'red';
+          input.style.border = '1px solid red'; // More controlled styling
           isValid = false;
         } else {
-          input.style.borderColor = '#ccc';
+          input.style.border = ''; // Reset to default
         }
       });
       

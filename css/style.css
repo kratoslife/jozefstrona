@@ -22,29 +22,28 @@ body {
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center everything */
+  align-items: center; /* This centers everything */
 }
 
 .logo-container {
   width: 100%;
   display: flex;
   justify-content: center; /* Center horizontally */
-  padding: 25px 0;
+  padding: 30px 0;
   background-color: rgba(60, 40, 20, 0.98);
-  border-bottom: 1px solid rgba(210, 180, 140, 0.3);
 }
 
 .logo-link {
   display: block;
-  width: min(600px, 80vw);
-  margin: 0 auto; /* Center logo */
+  width: min(700px, 90vw); /* Much wider */
 }
 
 .logo-image {
   width: 100%;
   height: auto;
-  max-height: 180px;
+  max-height: 200px; /* Taller */
   object-fit: contain;
+  margin: 0 auto; /* Extra centering */
 }
 
 .logo-link:hover .logo-image {
@@ -53,11 +52,11 @@ body {
 
 /* ===== NAVIGATION ===== */
 .main-nav {
+  width: 100%;
   display: flex;
   justify-content: center;
-  gap: 25px;
   padding: 20px 5%;
-  width: 100%;
+  background-color: rgba(50, 35, 15, 0.95);
 }
 
 .main-nav a {
@@ -578,23 +577,23 @@ body {
 }
 
 /* ===== MOBILE STYLES ===== */
-@media (max-width: 1200px) {
+@media (max-width: 768px) {
   .logo-link {
-    width: min(700px, 85vw);
-  }
-  
-  .hero-text h1 {
-    font-size: 3.2rem;
-  }
-}
-
-@media (max-width: 992px) {
-  .logo-link {
-    width: min(600px, 80vw);
+    width: min(600px, 90vw); /* Bigger than before */
   }
   
   .logo-image {
-    max-height: 220px;
+    max-height: 180px; /* Taller mobile logo */
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-link {
+    width: min(500px, 90vw); /* Very large on small phones */
+  }
+  
+  .logo-image {
+    max-height: 160px;
   }
   
   .hero-text h1 {
@@ -720,4 +719,16 @@ body {
     max-width: none;
     font-size: 1.1rem;
   }
+}
+/* Prevent unwanted borders */
+a, img, button, input, textarea {
+  border: 0 !important;
+  outline: none !important;
+}
+
+
+/* Form-specific validation styling */
+.contact input:invalid,
+.contact textarea:invalid {
+  border: 1px solid red !important;
 }
