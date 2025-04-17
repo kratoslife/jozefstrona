@@ -59,6 +59,7 @@ body {
   background-color: rgba(50, 35, 15, 0.95);
   position: relative;
   top: -20px;
+  z-index: 9999;
 }
 
 .main-nav a {
@@ -69,6 +70,7 @@ body {
   padding: 8px 15px;
   transition: all 0.3s ease;
   border-radius: 4px;
+  
 }
 
 .main-nav a:hover {
@@ -664,6 +666,10 @@ body {
     bottom: 0;
     background: rgba(0,0,0,0.5);
     z-index: 999;
+  }
+
+  .nav-overlay.active {
+    z-index: 9000;
   }
   
   body.menu-open {
