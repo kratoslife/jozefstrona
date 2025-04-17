@@ -35,13 +35,13 @@ body {
 
 .logo-link {
   display: block;
-  width: min(700px, 90vw); /* Much wider */
+  width: min(600px, 100%); /* Much wider */
 }
 
 .logo-image {
   width: 100%;
   height: auto;
-  max-height: 200px; /* Taller */
+  max-height: 180px; /* Taller */
   object-fit: contain;
   margin: 0 auto; /* Extra centering */
 }
@@ -580,61 +580,33 @@ body {
   }
 }
 
-/* ===== MOBILE STYLES ===== */
+/* ===== TABLET & MOBILE STYLES ===== */
 @media (max-width: 768px) {
   .logo-link {
-    width: min(600px, 90vw); /* Bigger than before */
+    width: min(600px, 90vw);
   }
-  
-  .logo-image {
-    max-height: 180px; /* Taller mobile logo */
-  }
-}
 
-@media (max-width: 480px) {
-  .logo-link {
-    width: min(500px, 90vw); /* Very large on small phones */
-  }
-  
   .logo-image {
-    max-height: 160px;
+    max-height: 180px;
   }
-  
-  .hero-text h1 {
-    font-size: 2.8rem;
-  }
-  
-  .hero-text p {
-    font-size: 1.3rem;
-  }
-}
 
-@media (max-width: 768px) {
   .logo-container {
     padding: 25px 0;
   }
-  
-  .logo-link {
-    width: min(500px, 85vw); /* Bigger on mobile */
-  }
-  
-  .logo-image {
-    max-height: 160px; /* Increased mobile size */
-  }
-  
+
   .main-header {
     flex-direction: row;
     flex-wrap: wrap;
     padding: 0;
   }
-  
+
   .mobile-menu-toggle {
     display: block;
     position: absolute;
     right: 20px;
     top: 20px;
   }
-  
+
   .main-nav {
     flex-direction: column;
     align-items: center;
@@ -645,18 +617,18 @@ body {
     background: rgba(60, 40, 20, 0.98);
     transition: left 0.3s ease;
   }
-  
+
   .main-nav.active {
     left: 0;
   }
-  
+
   .main-nav a {
     padding: 16px;
     margin: 10px 0;
     text-align: center;
     font-size: 1.2rem;
   }
-  
+
   .nav-overlay {
     display: none;
     position: fixed;
@@ -671,28 +643,28 @@ body {
   .nav-overlay.active {
     z-index: 9000;
   }
-  
+
   body.menu-open {
     overflow: hidden;
   }
-  
+
   body.menu-open .nav-overlay {
     display: block;
   }
-  
+
   .hero {
     padding: 100px 20px;
     min-height: 70vh;
   }
-  
+
   .hero-text h1 {
     font-size: 2.5rem;
   }
-  
+
   .hero-text p {
     font-size: 1.2rem;
   }
-  
+
   .calculator,
   .contact,
   .testimonials {
@@ -704,38 +676,44 @@ body {
   .logo-link {
     width: min(400px, 90vw);
   }
-  
+
   .logo-image {
     max-height: 150px;
   }
-  
+
   .hero-text h1 {
     font-size: 2.2rem;
   }
-  
+
+  .hero-text p {
+    font-size: 1.1rem;
+  }
+
   .hero-text .btn {
     padding: 14px 30px;
     font-size: 1.1rem;
   }
-  
+
   .main-footer p {
     font-size: 1rem;
   }
-  
+
   .call-btn {
     width: 100%;
     max-width: none;
     font-size: 1.1rem;
   }
 }
-/* Prevent unwanted borders */
+
+/* ===== GLOBAL FIXES ===== */
+
+/* Zapobiegaj obramowaniom po kliknięciu */
 a, img, button, input, textarea {
   border: 0 !important;
   outline: none !important;
 }
 
-
-/* Form-specific validation styling */
+/* Walidacja formularza */
 .contact input:invalid,
 .contact textarea:invalid {
   border: 1px solid red !important;
