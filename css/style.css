@@ -22,32 +22,32 @@ body {
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  align-items: center; /* This centers everything */
+  align-items: center; /* Centers the entire header */
 }
 
 .logo-container {
   width: 100%;
   display: flex;
-  justify-content: center; /* Center horizontally */
-  padding: 30px 0;
+  justify-content: center; /* Centers the logo horizontally */
+  padding: 20px 0;
   background-color: rgba(60, 40, 20, 0.98);
 }
 
 .logo-link {
   display: block;
-  width: min(600px, 100%); /* Much wider */
+  width: min(600px, 100%); /* Keeps logo width larger */
 }
 
 .logo-image {
   width: 100%;
   height: auto;
-  max-height: 180px; /* Taller */
+  max-height: 180px; /* Makes logo taller */
   object-fit: contain;
-  margin: 0 auto; /* Extra centering */
+  margin: 0 auto; /* Ensures logo is centered */
 }
 
 .logo-link:hover .logo-image {
-  transform: scale(1.05);
+  transform: scale(1.05); /* Slight zoom effect on hover */
 }
 
 /* ===== NAVIGATION ===== */
@@ -55,10 +55,10 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 20px 5%;
-  background-color: rgba(50, 35, 15, 0.95);
+  padding: 15px 5%;
+  background-color: rgba(50, 35, 15, 0.95); /* Slightly different brown for the menu */
   position: relative;
-  top: -20px;
+  top: -10px;
   z-index: 9999;
 }
 
@@ -67,15 +67,14 @@ body {
   text-decoration: none;
   font-weight: 500;
   font-size: 1.1rem;
-  padding: 8px 15px;
+  padding: 10px 15px;
   transition: all 0.3s ease;
   border-radius: 4px;
-  
 }
 
 .main-nav a:hover {
-  color: #d2b48c;
-  background: rgba(80, 55, 30, 0.5);
+  color: #d2b48c; /* Light brown color on hover */
+  background: rgba(80, 55, 30, 0.5); /* Slight background color change on hover */
 }
 
 .mobile-menu-toggle {
